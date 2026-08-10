@@ -138,23 +138,15 @@ window.MODELO = {
       tipo: 'data', padrao: '', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'banco', rotulo: 'Banco',
-      tipo: 'texto', padrao: 'Inter', largura: 'meio',
+      tipo: 'texto', padrao: 'Nubank', largura: 'meio',
       fixo: true },
 
-    { grupo: 'Pagamento', id: 'agencia', rotulo: 'Agência',
-      tipo: 'texto', padrao: '0001', largura: 'meio',
-      fixo: true },
-
-    { grupo: 'Pagamento', id: 'conta', rotulo: 'Conta corrente',
-      tipo: 'texto', padrao: '41641363-3', largura: 'meio',
-      fixo: true },
-
-    { grupo: 'Pagamento', id: 'pix', rotulo: 'Chave Pix (telefone)',
-      tipo: 'telefone', padrao: '12988099880', largura: 'meio',
+    { grupo: 'Pagamento', id: 'pix', rotulo: 'Chave Pix (CPF)',
+      tipo: 'cpf', padrao: '519.954.148-08', largura: 'meio',
       fixo: true },
 
     { grupo: 'Pagamento', id: 'titular', rotulo: 'Titular da conta',
-      tipo: 'texto', padrao: 'Júlia de Andrade Leite',
+      tipo: 'texto', padrao: 'Julia Andrade Leite',
       fixo: true },
 
     /* ---------- RESCISÃO E FORO -------------------------------------------- */
@@ -251,13 +243,11 @@ data <b class="dado">{{entrada_data}}</b>, <b class="dado">{{entrada_valor}}</b>
 <b class="dado">{{restante_valor}}</b>, será pago em até o dia
 <b class="dado">{{restante_data}}</b>.</p>
 
-<p>8.3. Os dados para pagamento deverão ser depositados na conta corrente abaixo:</p>
+<p>8.3. Os pagamentos deverão ser realizados via Pix, na chave abaixo:</p>
 
 <table class="dados-bancarios">
   <tr><td>Banco</td><td><b class="dado">{{banco}}</b></td></tr>
-  <tr><td>Agência</td><td><b class="dado">{{agencia}}</b></td></tr>
-  <tr><td>Conta</td><td><b class="dado">{{conta}}</b></td></tr>
-  <tr><td>Chave Pix</td><td><b class="dado">{{pix}}</b> (telefone)</td></tr>
+  <tr><td>Chave Pix</td><td><b class="dado">{{pix}}</b> (CPF)</td></tr>
   <tr><td>Titular</td><td><b class="dado">{{titular}}</b></td></tr>
 </table>
 

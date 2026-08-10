@@ -40,12 +40,19 @@
   }
 
   /* Junta o que foi salvo por cima dos padrões do modelo.
-     Um valor em branco no que foi salvo NÃO apaga o valor fixo do modelo.
-     É isso que garante que CPF e dados bancários da contratada sempre
-     apareçam, mesmo em rascunho ou contrato gravado antes deles existirem. */
+
+     Duas regras protegem os dados da Florescer:
+
+       1. Campo marcado com "fixo: true" SEMPRE vem do modelo.js, nunca do
+          que foi gravado. Assim, ao trocar a forma de pagamento no modelo,
+          todo contrato passa a mostrar a nova — inclusive os já salvos e o
+          rascunho do navegador, que ainda guardam os dados antigos.
+       2. Um valor em branco no que foi salvo não apaga um padrão do modelo. */
   function mesclar(salvos) {
     const d = valoresPadrao();
     Object.keys(salvos || {}).forEach((id) => {
+      const campo = campoPorId[id];
+      if (campo && campo.fixo) return;
       const v = salvos[id];
       if (v === undefined || v === null) return;
       if (v === '' && d[id] !== '' && d[id] !== undefined) return;
