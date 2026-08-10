@@ -1,0 +1,11 @@
+# Dados fixos da contratada (CPF, agência, conta, Pix).
+# O repositório é público — estes valores ficam só na máquina.
+assets/js/config-contratada.js
+
+# Contratos exportados e PDFs gerados
+*.pdf
+contratos/
+
+.DS_Store
+Thumbs.db
+node_modules/

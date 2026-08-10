@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contratos — Florescer Cerimônias</title>
+<link rel="icon" href="assets/img/logo-florescer.png">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/contrato.css">
+</head>
+<body>
+
+<!-- ===================== BARRA SUPERIOR ===================== -->
+<header class="barra">
+  <div class="barra-marca">
+    <img src="assets/img/logo-florescer.png" alt="Florescer Cerimônias">
+  </div>
+
+  <div class="barra-titulo">
+    <strong id="nome-atual">Novo contrato</strong>
+    <span id="estado" class="estado">novo</span>
+  </div>
+
+  <div class="barra-acoes">
+    <button type="button" id="btn-novo" class="btn">Novo</button>
+    <button type="button" id="btn-duplicar" class="btn">Duplicar</button>
+    <button type="button" id="btn-salvar" class="btn btn-primario">Salvar</button>
+    <span class="separador"></span>
+    <button type="button" id="btn-exportar" class="btn">Exportar</button>
+    <label class="btn" for="arquivo-importar">Importar</label>
+    <input type="file" id="arquivo-importar" accept="application/json" hidden>
+    <span class="separador"></span>
+    <button type="button" id="btn-imprimir" class="btn btn-destaque">Gerar PDF</button>
+  </div>
+</header>
+
+<div class="app">
+
+  <!-- ===================== PAINEL DE EDIÇÃO ===================== -->
+  <aside class="painel" id="painel">
+    <div class="painel-topo">
+      <h1 id="titulo-modelo">Contrato</h1>
+      <p id="subtitulo-modelo"></p>
+    </div>
+
+    <div id="formulario" class="formulario"></div>
+
+    <section class="grupo grupo--biblioteca">
+      <header class="grupo-cab estatico"><h2>Contratos salvos</h2></header>
+      <div class="grupo-corpo">
+        <div id="lista-contratos" class="lista-contratos"></div>
+        <button type="button" id="btn-excluir" class="btn btn-perigo largo">
+          Excluir contrato aberto
+        </button>
+      </div>
+    </section>
+
+    <p class="rodape-painel">
+      Para mudar o texto das cláusulas, edite <code>assets/js/modelo.js</code>.
+    </p>
+  </aside>
+
+  <!-- ===================== PREVIEW DO CONTRATO ===================== -->
+  <main class="palco" id="palco">
+    <div class="palco-topo">
+      <button type="button" id="btn-painel" class="btn btn-fantasma" title="Mostrar/ocultar o formulário">
+        Formulário
+      </button>
+      <div id="pendencias" class="pendencias"></div>
+      <label class="zoom-campo">
+        Zoom
+        <select id="zoom">
+          <option value="ajustar">Ajustar</option>
+          <option value="0.75">75%</option>
+          <option value="1">100%</option>
+          <option value="1.25">125%</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="palco-rolagem">
+      <!-- A folha é o documento em si. O <thead> repete o logo em toda página impressa. -->
+      <article class="folha" id="folha">
+        <table class="folha-grade">
+          <thead>
+            <tr><td>
+              <div class="cabecalho-doc">
+                <img src="assets/img/logo-florescer.png" alt="Florescer Cerimônias">
+              </div>
+            </td></tr>
+          </thead>
+          <tbody>
+            <tr><td>
+              <div id="conteudo-contrato" class="documento"></div>
+            </td></tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </main>
+</div>
+
+<div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+<script src="assets/js/formatadores.js"></script>
+<!-- Dados fixos da contratada (CPF, conta, Pix). Fica fora do git — veja o README.
+     Se o arquivo não existir, o sistema funciona igual, só com esses campos em branco. -->
+<script src="assets/js/config-contratada.js" onerror="void 0"></script>
+<script src="assets/js/modelo.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

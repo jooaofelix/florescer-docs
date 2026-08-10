@@ -1,0 +1,174 @@
+/* ===========================================================================
+   O DOCUMENTO — é isto que vira o PDF.
+   Mexa aqui para ajustar a aparência do contrato (fonte, margens, espaços).
+   =========================================================================== */
+
+:root {
+  --doc-fonte: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  --doc-tamanho: 11pt;
+  --doc-entrelinha: 1.55;
+  --doc-cor: #111;
+
+  /* Margens da folha A4. */
+  --margem-topo: 10mm;
+  --margem-lado: 21mm;
+  --margem-base: 16mm;
+
+  --logo-largura: 75mm;   /* largura do logo no cabeçalho */
+}
+
+/* ---------- a folha ------------------------------------------------------- */
+
+.folha {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: var(--margem-topo) var(--margem-lado) var(--margem-base);
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 12px 32px rgba(0, 0, 0, .12);
+  box-sizing: border-box;
+  color: var(--doc-cor);
+  font-family: var(--doc-fonte);
+  font-size: var(--doc-tamanho);
+  line-height: var(--doc-entrelinha);
+}
+
+.folha-grade { width: 100%; border-collapse: collapse; }
+.folha-grade > thead > tr > td,
+.folha-grade > tbody > tr > td { padding: 0; border: 0; vertical-align: top; }
+
+/* Cabeçalho com o logo — repetido em toda página na impressão. */
+.cabecalho-doc {
+  text-align: center;
+  padding-bottom: 6mm;
+}
+.cabecalho-doc img {
+  width: var(--logo-largura);
+  height: auto;
+  display: inline-block;
+}
+
+/* ---------- texto do contrato -------------------------------------------- */
+
+.documento .titulo {
+  font-size: 12pt;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: .02em;
+  margin: 0 0 6mm;
+}
+
+.documento p {
+  margin: 0 0 3.6mm;
+  text-align: justify;
+  text-justify: inter-word;
+  orphans: 2;
+  widows: 2;
+}
+
+/* Os dados preenchidos pelo formulário.
+   Quer tirar o negrito de todos de uma vez? Troque por font-weight: 400. */
+.documento .dado { font-weight: 700; }
+
+/* Marcador de campo ainda não preenchido: uma linha para preencher à mão. */
+.documento .vazio {
+  border-bottom: 1px solid #999;
+  display: inline-block;
+  min-width: 28mm;
+  color: transparent;
+}
+
+/* ---------- dados bancários ---------------------------------------------- */
+
+.documento .dados-bancarios {
+  border-collapse: collapse;
+  margin: 0 0 4mm 6mm;
+}
+.documento .dados-bancarios td { padding: .6mm 0; vertical-align: top; }
+.documento .dados-bancarios td:first-child {
+  width: 26mm;
+  color: #444;
+  padding-right: 4mm;
+}
+
+/* ---------- assinaturas --------------------------------------------------- */
+
+.documento .fecho { margin-top: 8mm; }
+.documento .local-data { margin: 8mm 0 14mm; }
+
+.documento .assinaturas,
+.documento .testemunhas {
+  width: 100%;
+  border-collapse: collapse;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.documento .assinaturas td {
+  width: 50%;
+  padding: 0 8mm;
+  text-align: center;
+  font-size: 10pt;
+  letter-spacing: .04em;
+}
+
+.documento .linha {
+  border-top: 1px solid #222;
+  margin-bottom: 1.5mm;
+}
+
+.documento .rotulo-testemunhas { margin: 16mm 0 6mm; }
+
+.documento .testemunhas td {
+  width: 50%;
+  padding-right: 10mm;
+  font-size: 10pt;
+  vertical-align: top;
+}
+.documento .testemunhas .ordem { margin-bottom: 8mm; }
+.documento .testemunhas .campo { margin-top: 3mm; color: #333; }
+
+/* ===========================================================================
+   IMPRESSÃO — o que realmente sai no PDF
+   =========================================================================== */
+
+@page {
+  size: A4;
+  margin: 10mm 21mm 16mm;
+}
+
+@media print {
+  html, body {
+    background: #fff !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Esconde toda a interface: só o documento é impresso. */
+  .barra, .painel, .palco-topo, .aviso { display: none !important; }
+
+  .app, .palco, .palco-rolagem {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff !important;
+  }
+
+  .folha {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;           /* as margens passam a ser as do @page */
+    box-shadow: none;
+    zoom: 1 !important;
+  }
+
+  /* O logo se repete no topo de cada página impressa. */
+  .folha-grade > thead { display: table-header-group; }
+  .cabecalho-doc { padding-bottom: 5mm; }
+
+  .documento p { orphans: 3; widows: 3; }
+  .documento .titulo { page-break-after: avoid; break-after: avoid; }
+}
