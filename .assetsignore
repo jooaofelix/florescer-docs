@@ -1,0 +1,5 @@
+# Arquivos que não precisam ir para o site publicado.
+wrangler.jsonc
+.assetsignore
+.gitignore
+README.md

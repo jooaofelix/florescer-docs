@@ -1,0 +1,14 @@
+{
+  // Publica o sistema como site estático no Cloudflare Workers.
+  // Não há código de servidor: o Worker só entrega os arquivos da pasta.
+  //
+  // Atenção: NÃO use "not_found_handling": "single-page-application" aqui.
+  // O index.html carrega assets/js/config-contratada.js, que fica fora do git —
+  // com o modo SPA o 404 desse arquivo devolveria o próprio index.html no lugar
+  // do script e quebraria a página. O 404 puro (padrão) é o comportamento certo.
+  "name": "florescer-docs",
+  "compatibility_date": "2026-08-10",
+  "assets": {
+    "directory": "./"
+  }
+}
