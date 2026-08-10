@@ -39,6 +39,21 @@
     return d;
   }
 
+  /* Junta o que foi salvo por cima dos padrões do modelo.
+     Um valor em branco no que foi salvo NÃO apaga o valor fixo do modelo.
+     É isso que garante que CPF e dados bancários da contratada sempre
+     apareçam, mesmo em rascunho ou contrato gravado antes deles existirem. */
+  function mesclar(salvos) {
+    const d = valoresPadrao();
+    Object.keys(salvos || {}).forEach((id) => {
+      const v = salvos[id];
+      if (v === undefined || v === null) return;
+      if (v === '' && d[id] !== '' && d[id] !== undefined) return;
+      d[id] = v;
+    });
+    return d;
+  }
+
   /* Texto de um campo já formatado, como aparece no contrato. */
   function textoDoCampo(id) {
     const campo = campoPorId[id];
@@ -175,11 +190,14 @@
     const auto = c.calculo
       ? `<button type="button" class="btn-auto" data-auto="${c.id}" title="Voltar ao cálculo automático">auto</button>`
       : '';
+    const selo = c.fixo
+      ? '<span class="selo-fixo" title="Dado fixo da Florescer: vem do modelo.js e já entra preenchido em todo contrato">fixo</span>'
+      : '';
     const prefixo = c.tipo === 'moeda' ? '<span class="prefixo">R$</span>' : '';
 
     return `
-      <div class="campo${larg}${c.calculo ? ' campo--calc' : ''}">
-        <label for="f_${c.id}">${escapar(c.rotulo)}${auto}</label>
+      <div class="campo${larg}${c.calculo ? ' campo--calc' : ''}${c.fixo ? ' campo--fixo' : ''}">
+        <label for="f_${c.id}">${escapar(c.rotulo)}${auto}${selo}</label>
         <div class="entrada">
           ${prefixo}
           <input id="f_${c.id}" type="${tipoHtml}" data-campo="${c.id}"${extra}>
@@ -382,7 +400,7 @@
     const c = bib[id];
     if (!c) return;
     if (!confirmarDescarte()) return;
-    dados = Object.assign(valoresPadrao(), c.dados || {});
+    dados = mesclar(c.dados);
     manuais = c.manuais || {};
     contratoAtual = id;
     sujo = false;
@@ -475,7 +493,7 @@
       try {
         const c = JSON.parse(leitor.result);
         if (!c.dados) throw new Error('formato');
-        dados = Object.assign(valoresPadrao(), c.dados);
+        dados = mesclar(c.dados);
         manuais = c.manuais || {};
         contratoAtual = null;
         marcarSujo();
@@ -530,7 +548,7 @@
     try {
       const r = JSON.parse(localStorage.getItem(CHAVE_RASCUNHO));
       if (r && r.dados) {
-        dados = Object.assign(valoresPadrao(), r.dados);
+        dados = mesclar(r.dados);
         manuais = r.manuais || {};
         return true;
       }

@@ -219,6 +219,20 @@ select:focus {
 
 .dica { display: block; margin-top: 4px; font-size: 11px; color: #a09689; }
 
+/* Dados fixos da Florescer — vêm do modelo.js, já entram preenchidos. */
+.selo-fixo {
+  font-size: 10px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid #e0d4c2;
+  background: var(--marca-clara);
+  color: var(--marca);
+  cursor: help;
+}
+.campo--fixo input { background: #fbf8f3; }
+
 /* Campos calculados automaticamente. */
 .campo--calc input { background: #f4f7f4; }
 .campo--calc.is-manual input { background: #fdfcfa; }

@@ -52,19 +52,24 @@ window.MODELO = {
       tipo: 'texto', padrao: 'Cerimonial de Casamento' },
 
     { grupo: 'Contratada', id: 'contratada_nome', rotulo: 'Nome da contratada',
-      tipo: 'texto', padrao: 'Julia de Andrade Leite' },
+      tipo: 'texto', padrao: 'Julia de Andrade Leite',
+      fixo: true },
 
     { grupo: 'Contratada', id: 'contratada_cpf', rotulo: 'CPF',
-      tipo: 'cpf', padrao: '519.954.148-08', largura: 'meio' },
+      tipo: 'cpf', padrao: '519.954.148-08', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Contratada', id: 'contratada_cep', rotulo: 'CEP',
-      tipo: 'cep', padrao: '12305-000', largura: 'meio' },
+      tipo: 'cep', padrao: '12305-000', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Contratada', id: 'contratada_endereco', rotulo: 'Endereço',
-      tipo: 'texto', padrao: 'Avenida Getúlio Vargas, 1369 – Jardim California' },
+      tipo: 'texto', padrao: 'Avenida Getúlio Vargas, 1369 – Jardim California',
+      fixo: true },
 
     { grupo: 'Contratada', id: 'contratada_cidade', rotulo: 'Cidade/UF',
-      tipo: 'texto', padrao: 'Jacareí/SP' },
+      tipo: 'texto', padrao: 'Jacareí/SP',
+      fixo: true },
 
     /* ---------- CONTRATANTE (muda a cada cliente) -------------------------- */
     { grupo: 'Contratante', id: 'contratante_nome', rotulo: 'Nome completo',
@@ -133,19 +138,24 @@ window.MODELO = {
       tipo: 'data', padrao: '', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'banco', rotulo: 'Banco',
-      tipo: 'texto', padrao: 'Inter', largura: 'meio' },
+      tipo: 'texto', padrao: 'Inter', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Pagamento', id: 'agencia', rotulo: 'Agência',
-      tipo: 'texto', padrao: '0001', largura: 'meio' },
+      tipo: 'texto', padrao: '0001', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Pagamento', id: 'conta', rotulo: 'Conta corrente',
-      tipo: 'texto', padrao: '41641363-3', largura: 'meio' },
+      tipo: 'texto', padrao: '41641363-3', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Pagamento', id: 'pix', rotulo: 'Chave Pix (telefone)',
-      tipo: 'telefone', padrao: '12988099880', largura: 'meio' },
+      tipo: 'telefone', padrao: '12988099880', largura: 'meio',
+      fixo: true },
 
     { grupo: 'Pagamento', id: 'titular', rotulo: 'Titular da conta',
-      tipo: 'texto', padrao: 'Júlia de Andrade Leite' },
+      tipo: 'texto', padrao: 'Júlia de Andrade Leite',
+      fixo: true },
 
     /* ---------- RESCISÃO E FORO -------------------------------------------- */
     { grupo: 'Rescisão e foro', id: 'multa_percentual', rotulo: 'Multa por rescisão (%)',
