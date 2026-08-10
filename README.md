@@ -8,21 +8,6 @@ Não precisa instalar nada, não precisa de internet, não precisa de servidor:
 
 ---
 
-## Começando (uma vez só)
-
-1. Baixe/clone esta pasta no computador.
-2. Entre em `assets/js/`, copie o arquivo `config-contratada.exemplo.js`
-   e renomeie a cópia para **`config-contratada.js`**.
-3. Abra essa cópia e preencha CPF, banco, agência, conta e Pix da Florescer.
-4. Salve. Pronto.
-
-> **Por que esse passo existe:** o repositório é público. CPF e conta bancária
-> não podem ficar no código, então moram nesse arquivo, que o git ignora.
-> Se um dia o repositório virar privado, dá para jogar esses valores direto
-> nos `padrao` do `modelo.js` e apagar o `config-contratada.js`.
-
----
-
 ## Usando no dia a dia
 
 Abra o `index.html` (duplo clique) e:
@@ -117,12 +102,12 @@ eles não sabem nada sobre qual contrato está carregado.
 
 ```
 index.html                              a tela
+wrangler.jsonc                          publicação no Cloudflare Workers
 assets/
   img/logo-florescer.png                logo (extraído do contrato original)
   css/app.css                           aparência do sistema (não sai no PDF)
   css/contrato.css                      aparência do contrato (é o que vira PDF)
   js/modelo.js                          ← o contrato: campos + texto das cláusulas
-  js/config-contratada.exemplo.js       modelo do arquivo de dados da contratada
   js/formatadores.js                    máscaras, datas, dinheiro, por extenso
   js/app.js                             motor (formulário, cálculos, salvar, PDF)
 ```

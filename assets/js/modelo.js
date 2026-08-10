@@ -55,7 +55,7 @@ window.MODELO = {
       tipo: 'texto', padrao: 'Julia de Andrade Leite' },
 
     { grupo: 'Contratada', id: 'contratada_cpf', rotulo: 'CPF',
-      tipo: 'cpf', padrao: '', largura: 'meio' },
+      tipo: 'cpf', padrao: '519.954.148-08', largura: 'meio' },
 
     { grupo: 'Contratada', id: 'contratada_cep', rotulo: 'CEP',
       tipo: 'cep', padrao: '12305-000', largura: 'meio' },
@@ -133,16 +133,16 @@ window.MODELO = {
       tipo: 'data', padrao: '', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'banco', rotulo: 'Banco',
-      tipo: 'texto', padrao: '', largura: 'meio' },
+      tipo: 'texto', padrao: 'Inter', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'agencia', rotulo: 'Agência',
-      tipo: 'texto', padrao: '', largura: 'meio' },
+      tipo: 'texto', padrao: '0001', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'conta', rotulo: 'Conta corrente',
-      tipo: 'texto', padrao: '', largura: 'meio' },
+      tipo: 'texto', padrao: '41641363-3', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'pix', rotulo: 'Chave Pix (telefone)',
-      tipo: 'telefone', padrao: '', largura: 'meio' },
+      tipo: 'telefone', padrao: '12988099880', largura: 'meio' },
 
     { grupo: 'Pagamento', id: 'titular', rotulo: 'Titular da conta',
       tipo: 'texto', padrao: 'Júlia de Andrade Leite' },

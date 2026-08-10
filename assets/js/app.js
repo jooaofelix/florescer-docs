@@ -36,8 +36,6 @@
       d[c.id] = Array.isArray(c.padrao) ? JSON.parse(JSON.stringify(c.padrao))
         : (c.padrao !== undefined ? c.padrao : '');
     });
-    /* Dados fixos da contratada vêm de config-contratada.js (fora do git). */
-    Object.assign(d, window.CONFIG_CONTRATADA || {});
     return d;
   }
 
