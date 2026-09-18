@@ -14,3 +14,4 @@ ferramentas/
 .git/
 node_modules/
 .dev.vars
+.wrangler/
