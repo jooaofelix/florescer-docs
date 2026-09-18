@@ -3,3 +3,14 @@ wrangler.jsonc
 .assetsignore
 .gitignore
 README.md
+
+# Código que roda no servidor e ferramentas de linha de comando:
+# não podem ser servidos como arquivo público.
+worker/
+ferramentas/
+
+# O wrangler varre a pasta inteira e, sem estas linhas, publica o histórico
+# do git como arquivos acessíveis pela web (/.git/config e afins).
+.git/
+node_modules/
+.dev.vars

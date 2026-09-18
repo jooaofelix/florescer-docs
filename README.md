@@ -47,6 +47,59 @@ Para guardar de verdade, use **Exportar** e salve o `.json` junto do PDF.
 
 ---
 
+## Acesso ao site publicado
+
+O site no endereço da Cloudflare é **fechado por login e senha**. A verificação
+acontece no servidor, antes de qualquer arquivo ser entregue — sem entrar, o
+navegador não recebe nem o HTML, nem o JavaScript, nem o modelo do contrato.
+
+Um "login" escrito em JavaScript na página não serviria: bastaria abrir o
+código-fonte para ver a senha ou baixar os arquivos direto.
+
+### Liberar acesso para alguém
+
+1. Gere o usuário e a senha:
+
+   ```
+   node ferramentas/gerar-usuario.mjs julia umaSenhaBoaAqui
+   ```
+
+2. No painel da Cloudflare, em **Workers & Pages → florescer-docs → Settings →
+   Variables and Secrets**, crie (ou edite) os dois segredos que o comando imprime:
+
+   | Segredo | Conteúdo |
+   |---|---|
+   | `FLORESCER_USUARIOS` | `{"julia":"<hash>","joao":"<hash>"}` |
+   | `FLORESCER_SESSAO_SEGREDO` | um texto aleatório longo |
+
+3. Salve. Vale no próximo carregamento da página.
+
+Para mais de uma pessoa, junte todas no mesmo JSON de `FLORESCER_USUARIOS`.
+
+### Tirar o acesso
+
+Apague a linha da pessoa em `FLORESCER_USUARIOS` e salve. Para desconectar
+**todo mundo** de uma vez, troque o `FLORESCER_SESSAO_SEGREDO` — todas as
+sessões abertas param de valer na hora.
+
+Só quem tem acesso ao painel da Cloudflare consegue liberar alguém. A senha
+não fica no repositório, e o hash guardado não volta a ser senha.
+
+### Detalhes
+
+- A sessão dura 12 horas e fica num cookie assinado (`HttpOnly`, `Secure`,
+  `SameSite=Strict`). Cookie adulterado é recusado.
+- **Sem os segredos configurados, o site fica fechado**, nunca aberto: mostra
+  um aviso de "acesso ainda não configurado" e não entrega arquivo nenhum.
+- O botão **Sair** aparece na barra de cima só no site publicado.
+- Abrindo o `index.html` direto do computador não há login — a trava protege o
+  endereço público, não o arquivo local.
+
+Para mudar quanto tempo a sessão dura, veja `DURACAO_SESSAO` em
+[`worker/index.js`](worker/index.js).
+
+---
+
 ## Mudando o contrato
 
 Tudo que é o contrato em si mora em **um arquivo só**:
@@ -103,6 +156,9 @@ eles não sabem nada sobre qual contrato está carregado.
 ```
 index.html                              a tela
 wrangler.jsonc                          publicação no Cloudflare Workers
+.assetsignore                           o que NÃO vira arquivo público
+worker/index.js                         trava de acesso (roda no servidor)
+ferramentas/gerar-usuario.mjs           gera usuário e senha para a trava
 assets/
   img/logo-florescer.png                logo (extraído do contrato original)
   css/app.css                           aparência do sistema (não sai no PDF)

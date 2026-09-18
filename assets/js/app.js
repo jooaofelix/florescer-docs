@@ -580,8 +580,13 @@
     listarContratos();
     atualizarBarra();
 
-    $('#btn-novo').addEventListener('click', novo);
-    $('#btn-salvar').addEventListener('click', salvar);
+    /* "Sair" só existe no site publicado, que tem a trava de acesso.
+       Abrindo o index.html direto do computador, não há sessão a encerrar. */
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+      $('#btn-sair').hidden = false;
+    }
+
+    $('#btn-novo').addEventListener('click', novo);    $('#btn-salvar').addEventListener('click', salvar);
     $('#btn-duplicar').addEventListener('click', duplicar);
     $('#btn-excluir').addEventListener('click', excluir);
     $('#btn-exportar').addEventListener('click', exportar);

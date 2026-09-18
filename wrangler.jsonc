@@ -1,9 +1,16 @@
 {
-  // Publica o sistema como site estático no Cloudflare Workers.
-  // Não há código de servidor: o Worker só entrega os arquivos da pasta.
+  // Publica o sistema como site estático no Cloudflare Workers, com a trava
+  // de acesso de worker/index.js na frente.
+  //
+  // run_worker_first é OBRIGATÓRIO aqui. Sem ele (o padrão é false), a
+  // Cloudflare entrega os arquivos ANTES de chamar o Worker, e a trava
+  // seria contornada só digitando o caminho do arquivo.
   "name": "florescer-docs",
-  "compatibility_date": "2026-08-10",
+  "compatibility_date": "2026-09-17",
+  "main": "worker/index.js",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": true
   }
 }

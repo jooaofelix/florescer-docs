@@ -5,3 +5,6 @@ contratos/
 .DS_Store
 Thumbs.db
 node_modules/
+
+# Segredos de teste local do wrangler (usuários e senha).
+.dev.vars
